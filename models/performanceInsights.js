@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const performanceInsightsSchema = new mongoose.Schema({
-  insightId: {
-    type: Number,
-    unique: true,
-    required: true,
-  },
   studentId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'StudentProfile',

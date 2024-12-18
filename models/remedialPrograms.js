@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
 const remedialProgramsSchema = new mongoose.Schema({
-  programId: {
-    type: Number,
-    unique: true,
-    required: true,
-  },
   studentId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'StudentProfile',

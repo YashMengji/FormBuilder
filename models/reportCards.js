@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const reportCardSchema = new mongoose.Schema({
-  report_card_id: {
-    type: mongoose.Schema.Types.ObjectId, // MongoDB's default unique ID
-    auto: true, // Automatically generated
-  },
   student_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'StudentProfile', // Reference to student_profile collection
