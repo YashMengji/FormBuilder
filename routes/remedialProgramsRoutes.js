@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", getRemedialProgramStudentList);
 router.post("/register", registerStudent)
-router.update("/:id/update", updateStudent)
+router.put("/:id/update", updateStudent)
 
 
 module.exports = router;
