@@ -36,6 +36,16 @@ app.get("/api/reports/:id", async (req, res) => {
     res.status(500).json({message: error.message})
   }
 })
+app.post("/api/reports", async (req, res) => {
+  const reportCard = new reportCardModel(req.body);
+  try {
+    await reportCard.save();
+    res.status(201).json(reportCard);
+  }
+  catch(error){
+    res.status(400).json({message: error.message})
+  }
+})
 
 const PORT = process.env.PORT  || 3000;
 
