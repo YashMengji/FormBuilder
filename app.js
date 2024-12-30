@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the API! The server is running.");
+  res.redirect("https://performancemetricfront.onrender.com/")
 });
 
 app.use("/api/performance-insights", performanceInsightsRoutes);
