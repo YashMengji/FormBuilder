@@ -2,6 +2,8 @@ const express = require("express");
 require("dotenv").config();
 const performanceInsightsRoutes = require("./routes/performanceInsightsRoutes");
 const remedialProgramsRoutes = require("./routes/remedialProgramsRoutes");
+const reportCardModel = require("./models/reportCards.js"); //TEMPORARY CHANGES
+const performanceInsightModel = require("./models/performanceInsights");
 const connectDB = require("./config/db");
 
 const app = express();
@@ -17,6 +19,14 @@ app.get("/", (req, res) => {
 
 app.use("/api/performance-insights", performanceInsightsRoutes);
 app.use("/api/remedial-programs", remedialProgramsRoutes);
+app.get("/api/reports", async (req, res) => { // Temp route
+  const reportCards =  await reportCardModel.find();
+  return res.status(200).json(reportCards);
+});
+app.get("/api/performance/delete", async (req, res) => { // Temp route
+  await performanceInsightModel.deleteMany({});
+  res.status(200).json({message: "All performance insights are deleted !"});
+});
 
 const PORT = process.env.PORT  || 3000;
 

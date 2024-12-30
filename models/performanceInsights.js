@@ -6,6 +6,10 @@ const performanceInsightsSchema = new mongoose.Schema({
     ref: 'StudentProfile',
     required: true,
   },
+  studentName: {
+    type: String,
+    required: true
+  },
   academicYear: {
     type: String,
     required: true,

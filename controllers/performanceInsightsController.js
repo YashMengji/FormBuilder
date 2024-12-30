@@ -20,15 +20,17 @@ async function createPerformanceInsight(req, res) {
           - Overall Grade: ${report.overall_grade}
           - Teacher Remarks: ${report.teacher_remarks}
 
+          Here is the order of importance A+ > A > A- > B+ > B > B- > C+ > C > C-
+
           Generate performance insights including:
-          - Strengths: (Subjects	or	topics	where	the	student	excels)
-          - Weaknesses: (Subjects	or	topics	where	the	student	struggles)
+          - Strengths: Only subject names where the student scores comparitively higher than other subjects
+          - Weaknesses: Only subject names where the student scores comparitively lower than other subjects
           - Recommendations: (Suggest only name of the remedial	or	enrichment	programs any one:- Assume some remedial program and enrichment programs and suggest them)
 
           Return the response in the format:
           { 
-            "strengths": "string", 
-            "weaknesses": "string", 
+            "strengths": array of string, 
+            "weaknesses": array of string, 
             "recommendations": "string" 
           }.
         `;
@@ -39,6 +41,7 @@ async function createPerformanceInsight(req, res) {
         const performanceObject = JSON.parse(text);
         const performanceInsight = await performanceInsights.create({
           studentId: report.student_id,
+          studentName: report.student_name,
           academicYear: report.academic_year,
           classId: report.class_id,
           examName: report.exam_name,
@@ -88,4 +91,17 @@ async function createClassLevelPerformanceInsight(req, res) {
   }
 }
 
-module.exports = {createPerformanceInsight, createClassLevelPerformanceInsight}
+async function getSingleInsight(req, res) {
+  try {
+    // const objectId = mongoose.Types.ObjectId();
+    // console.log(typeof(objectId));
+    const performanceInsight = await performanceInsights.findById(req.params.id);
+    console.log(performanceInsight);
+    res.status(200).json(performanceInsight);
+  }
+  catch(error){
+    res.status(500).json({message: error.message})
+  }
+}
+
+module.exports = {createPerformanceInsight, createClassLevelPerformanceInsight, getSingleInsight}

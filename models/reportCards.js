@@ -6,6 +6,10 @@ const reportCardSchema = new mongoose.Schema({
     ref: 'StudentProfile', // Reference to student_profile collection
     required: true,
   },
+  student_name: {
+    type: String,
+    required: true
+  },
   academic_year: {
     type: String,
     required: true,

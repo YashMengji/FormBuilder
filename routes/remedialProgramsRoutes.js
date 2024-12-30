@@ -5,8 +5,8 @@ const { getRemedialProgramStudentList, registerStudent, updateStudent } = requir
 const router = express.Router();
 
 router.get("/", getRemedialProgramStudentList);
-router.post("/register", registerStudent)
-router.put("/:id/update", updateStudent)
+router.post("/register", registerStudent);
+router.put("/:id/update", updateStudent);
 
 
 module.exports = router;

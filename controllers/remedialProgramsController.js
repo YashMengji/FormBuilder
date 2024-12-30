@@ -18,6 +18,7 @@ async function registerStudent(req, res) {
     }
     const newProgram = new remedialPrograms({
       studentId: mongoose.Types.ObjectId(req.body.studentId),
+      studentName: req.body.studentName,
       subjectId: mongoose.Types.ObjectId(req.body.subjectId),
       programType: req.body.programType,
       description: req.body.description,

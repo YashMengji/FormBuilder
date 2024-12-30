@@ -6,6 +6,10 @@ const remedialProgramsSchema = new mongoose.Schema({
     ref: 'StudentProfile',
     required: true,
   },
+  studentName: {
+    type: String,
+    required: true
+  },
   subjectId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'AcademicSubjects',
