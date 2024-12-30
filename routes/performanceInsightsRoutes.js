@@ -8,5 +8,6 @@ const router = express.Router();
 router.get("/create", createPerformanceInsight)
 router.get("/class-level", createClassLevelPerformanceInsight)
 router.get("/:id", getSingleInsight)
+// router.get("/reports/:id", getSingleReport)
 
 module.exports = router;

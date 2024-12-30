@@ -25,12 +25,12 @@ async function createPerformanceInsight(req, res) {
           Generate performance insights including:
           - Strengths: Only subject names where the student scores comparitively higher than other subjects
           - Weaknesses: Only subject names where the student scores comparitively lower than other subjects
-          - Recommendations: (Suggest only name of the remedial	or	enrichment	programs any one:- Assume some remedial program and enrichment programs and suggest them)
+          - Recommendations: (Provide brief recommendation on strength and weakness also suggesting name of the remedial	or	enrichment	programs any one:- (Assume some remedial program and enrichment programs and suggest them)
 
           Return the response in the format:
           { 
-            "strengths": array of string, 
-            "weaknesses": array of string, 
+            "strengths": concatenation of subject names with space into single string, 
+            "weaknesses": concatenation of subject names with space into single string, 
             "recommendations": "string" 
           }.
         `;
@@ -39,6 +39,9 @@ async function createPerformanceInsight(req, res) {
         let text = response.text();
         text = text.replace(/```/g, "").replace(/json/g, "");
         const performanceObject = JSON.parse(text);
+
+        let a = report.subject_grades["Mathematics"];
+
         const performanceInsight = await performanceInsights.create({
           studentId: report.student_id,
           studentName: report.student_name,
@@ -96,7 +99,7 @@ async function getSingleInsight(req, res) {
     // const objectId = mongoose.Types.ObjectId();
     // console.log(typeof(objectId));
     const performanceInsight = await performanceInsights.findById(req.params.id);
-    console.log(performanceInsight);
+    // console.log(performanceInsight);
     res.status(200).json(performanceInsight);
   }
   catch(error){
@@ -104,4 +107,4 @@ async function getSingleInsight(req, res) {
   }
 }
 
-module.exports = {createPerformanceInsight, createClassLevelPerformanceInsight, getSingleInsight}
+module.exports = {createPerformanceInsight, createClassLevelPerformanceInsight, getSingleInsight};

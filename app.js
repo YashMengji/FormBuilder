@@ -27,6 +27,15 @@ app.get("/api/performance/delete", async (req, res) => { // Temp route
   await performanceInsightModel.deleteMany({});
   res.status(200).json({message: "All performance insights are deleted !"});
 });
+app.get("/api/reports/:id", async (req, res) => {
+  try {
+    const reportCard = await reportCardModel.findById(req.params.id);
+    res.status(200).json(reportCard);
+  }
+  catch(error){
+    res.status(500).json({message: error.message})
+  }
+})
 
 const PORT = process.env.PORT  || 3000;
 
